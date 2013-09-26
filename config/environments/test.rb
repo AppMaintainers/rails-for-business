@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 StudentAdmin::Application.configure do
+=======
+TaskModel::Application.configure do
+>>>>>>> 413d0d73c5d5ca3f0391c3c143a73b486d8ac706
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

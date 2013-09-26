@@ -3,4 +3,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+<<<<<<< HEAD
 StudentAdmin::Application.load_tasks
+=======
+TaskModel::Application.load_tasks
+>>>>>>> 413d0d73c5d5ca3f0391c3c143a73b486d8ac706

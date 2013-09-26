@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 StudentAdmin::Application.routes.draw do
   resources :students
+=======
+TaskModel::Application.routes.draw do
+>>>>>>> 413d0d73c5d5ca3f0391c3c143a73b486d8ac706
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
