@@ -17,7 +17,7 @@ describe Student do
     andy = Student.create!(name: "Andy Smith", email: "andy@foo.com", nickname: "Andy")
     john = Student.create!(name: "John Doe", email: "john@foo.com", nickname: "John")
 
-    expect(Student.order("name")).to eq([andy, john])
+    expect(Student.all(:order => "name")).to eq([andy, john])
   end
 end
 
