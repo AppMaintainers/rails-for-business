@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-<<<<<<< HEAD
 fnames = ["Adam", "Benjamin", "Caleb", "Daniel", "Frank", "Gideon"]
 lnames = ["Smith", "Jones", "Washington", "Jefferson", "Gardener", 
 "Cooper"]
@@ -19,7 +18,6 @@ Student.delete_all
 end
 
 
-=======
 task_list = [
   [ "First", 540 ],
   [ "Second", 850 ],
@@ -28,6 +26,5 @@ task_list = [
 ]
 
 task_list.each do |description, points|
-  Country.create( description: description, points: points )
+  Task.create( description: description, points: points )
 end
->>>>>>> 413d0d73c5d5ca3f0391c3c143a73b486d8ac706
