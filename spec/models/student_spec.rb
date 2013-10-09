@@ -13,11 +13,29 @@
 require 'spec_helper'
 
 describe Student do
-  it "orders by name" do
-    andy = Student.create!(name: "Andy Smith", email: "andy@foo.com", nickname: "Andy")
-    john = Student.create!(name: "John Doe", email: "john@foo.com", nickname: "John")
-
-    expect(Student.order("name")).to eq([andy, john])
+  
+  before do
+    @student = Student.new(name: "Example Student", email: "student@foobar.com", nickname: "Student")
   end
+
+  subject {@student }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:nickname) }
+  it { should respond_to(:created_at) }
+  it { should respond_to(:updated_at) }
+  it { should respond_to(:tasks) }
+  it { should respond_to(:works) }
+
+  it { should have_many(:works) }
+  it { should have_many(:tasks).through(:works) }
+
+  it "should be saved to database" do
+    @student.save
+    loaded = Student.first
+    expect(loaded).to eq(@student)
+  end
+
 end
 
