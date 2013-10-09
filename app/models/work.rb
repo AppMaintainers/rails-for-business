@@ -3,6 +3,8 @@
 # Table name: works
 #
 #  id         :integer          not null, primary key
+#  task_id    :integer
+#  student_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

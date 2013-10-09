@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20130926150255) do
   end
 
   create_table "works", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

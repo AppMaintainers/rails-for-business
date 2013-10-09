@@ -12,8 +12,8 @@ lnames = ["Smith", "Jones", "Washington", "Jefferson", "Gardener",
 Student.delete_all
 10.times do
   nickname = fnames[rand(6)]
-  name = nickname + lnames[rand(6)]
-  email = name + "@foobar.com"
+  name = nickname + " " + lnames[rand(6)]
+  email = (name + "@foobar.com").gsub(" ", "")
   Student.create(name: name, email: email, nickname: nickname)
 end
 
