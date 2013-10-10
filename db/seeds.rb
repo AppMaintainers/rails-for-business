@@ -10,7 +10,7 @@ fnames = ["Adam", "Benjamin", "Caleb", "Daniel", "Frank", "Gideon"]
 lnames = ["Smith", "Jones", "Washington", "Jefferson", "Gardener", 
 "Cooper"]
 Student.delete_all
-10.times do
+3.times do
   nickname = fnames[rand(6)]
   name = nickname + " " + lnames[rand(6)]
   email = (name + "@foobar.com").gsub(" ", "")
@@ -28,3 +28,5 @@ task_list = [
 task_list.each do |description, points|
   Task.create( description: description, points: points )
 end
+
+Teacher.create(email: "admin@admin.hu", password: "adminadmin")
