@@ -36,7 +36,7 @@ group :production do
 end
 
 gem 'execjs'
-#gem 'therubyracer'
+gem 'therubyracer'
 gem 'annotate'
 
 gem 'rails_admin'
