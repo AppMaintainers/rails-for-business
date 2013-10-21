@@ -12,7 +12,7 @@ public/system
 db/*.sqlite3
 .idea
 *~
-public/assets/email
+public/assets
 /dumps
 rails_db_sandbox.rb
 *.swp
