@@ -6,6 +6,7 @@ tmp/
 .sass-cache/
 config/database.yml
 */**/.DS_Store
+public/assets
 public/promopics
 public/barcodes
 public/system
