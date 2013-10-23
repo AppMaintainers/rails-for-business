@@ -17,7 +17,6 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails', '4.0.0'
   gem 'uglifier', '2.1.1'
   gem 'coffee-rails', '4.0.0'
 end
@@ -36,7 +35,7 @@ group :production do
 end
 
 gem 'execjs'
-#gem 'therubyracer'
+gem 'therubyracer'
 gem 'annotate'
 
 gem 'rails_admin'
