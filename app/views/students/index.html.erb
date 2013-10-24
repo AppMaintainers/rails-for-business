@@ -21,5 +21,14 @@
         <% end %>
       </tbody>
     </table>
+
+    <hr>
+    <% @tasks.each do |task| %>
+    <p>
+      Description: <%= task.description %><br>
+      <b>Points: <%= task.points %></b><br>
+      <b>Business: <%= task.business ? 'true' : 'false' %></b>
+    </p>
+    <% end %>
   </div>
 </div>
