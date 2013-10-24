@@ -13,4 +13,7 @@
 class Student < ActiveRecord::Base
   has_many :works
   has_many :tasks, through: :works
+  def available_tasks
+    return Task.all - self.tasks - Task.where(one_time: true).select{|task| !task.students.empty?}
+  end
 end
