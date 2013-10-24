@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021105310) do
+ActiveRecord::Schema.define(version: 20131024140331) do
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20131021105310) do
     t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "business", default: false, null: false
+    t.boolean  "business",    default: false, null: false
   end
 
   create_table "teachers", force: true do |t|

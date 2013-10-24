@@ -25,8 +25,8 @@ task_list = [
   [ "Fourth", 80000 ]
 ]
 
-task_list.each do |description, points|
-  Task.create( description: description, points: points )
+task_list.each do |description, points, business|
+  Task.create( description: description, points: points, business: false )
 end
 
 Teacher.create(email: "admin@admin.hu", password: "adminadmin")
