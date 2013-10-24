@@ -4,7 +4,6 @@
 #
 #  id         :integer          not null, primary key
 #  task_id    :integer
-#  student_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -19,32 +18,24 @@ describe Work do
   subject { @work }
 
   it { should respond_to(:task_id) }
-  it { should respond_to(:student_id) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:task) }
-  it { should respond_to(:student) }
+  it { should respond_to(:students) }
 
   it { should belong_to(:task) }
-  it { should belong_to(:student) }
+  it { should have_and_belong_to_many(:students) }
 
-  it "should created when a task added to a student" do
-    student = Student.new
-    task = Task.new
-    student.tasks << task
+  it "should connect a student and a task" do
+    student = Student.create
+    task = Task.create
+    work = Work.create
+    work.task = task
+    work.save
+    student.works << work
     student.save
-
-    work = Work.where(task_id: task.id, student_id: student.id)
-    expect(work).to be_true # not nil
-  end
-
-  it "should created when a student added to a task" do
-    student = Student.new
-    task = Task.new
-    task.students << student
-    task.save
-
-    work = Work.where(task_id: task.id, student_id: student.id)
-    expect(work).to be_true # not nil
+#    tasks = student.tasks.all
+    expect(student.tasks).to include(task)
+    expect(task.students).to include(student)
   end
 end

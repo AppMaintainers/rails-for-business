@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021105310) do
+ActiveRecord::Schema.define(version: 20131024133543) do
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 20131021105310) do
     t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "students_works", id: false, force: true do |t|
+    t.integer "work_id"
+    t.integer "student_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -62,7 +67,6 @@ ActiveRecord::Schema.define(version: 20131021105310) do
 
   create_table "works", force: true do |t|
     t.integer  "task_id"
-    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

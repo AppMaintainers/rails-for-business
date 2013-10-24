@@ -13,5 +13,5 @@ class Task < ActiveRecord::Base
   has_many :works
   has_many :students, through: :works
 
-  default_scope order('created_at DESC')
+  default_scope { order('tasks.created_at DESC') }
 end

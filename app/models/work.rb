@@ -4,12 +4,11 @@
 #
 #  id         :integer          not null, primary key
 #  task_id    :integer
-#  student_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 class Work < ActiveRecord::Base
-  belongs_to :student
+  has_and_belongs_to_many :students
   belongs_to :task
 end

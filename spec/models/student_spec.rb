@@ -28,7 +28,7 @@ describe Student do
   it { should respond_to(:tasks) }
   it { should respond_to(:works) }
 
-  it { should have_many(:works) }
+  it { should have_and_belong_to_many(:works) }
   it { should have_many(:tasks).through(:works) }
 
   it "should be saved to database" do
