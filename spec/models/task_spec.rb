@@ -42,22 +42,23 @@ describe Task do
     expect(loaded).to eq(@task)
   end
 
-  it "should have a child" do
-      parent = Task.create
-      child = Task.create
+  describe "in parent-child relationship" do
+    let(:parent) { Task.create }
+    let(:child) { Task.create }
+
+    it "should have a child" do
       child.parent = parent
       child.save
       
       expect(parent.children).to include(child)
-  end
+    end
 
-  it "should have parent" do
-      parent = Task.create
-      child = Task.create
+    it "should have parent" do
       parent.children << child
       parent.save
       
       expect(child.parent).to eq(parent)
+    end
   end
 end
 
