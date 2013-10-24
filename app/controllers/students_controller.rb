@@ -6,4 +6,8 @@ class StudentsController < ApplicationController
     @students = Student.all
     @tasks = Task.all
   end
+
+  def show
+    @student = Student.find(params[:id])
+  end
 end
