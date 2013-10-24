@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20131021105310) do
     t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "business"
+    t.boolean  "business", default: false, null: false
   end
 
   create_table "teachers", force: true do |t|
