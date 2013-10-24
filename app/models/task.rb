@@ -7,11 +7,14 @@
 #  points      :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  business    :boolean
 #
 
 class Task < ActiveRecord::Base
   has_many :works
   has_many :students, through: :works
+  belongs_to :parent, class_name: "Task"
+  has_many :children, class_name: "Task", foreign_key: "parent_id"
 
   default_scope { order('tasks.created_at DESC') }
 end
