@@ -51,7 +51,7 @@ describe Task do
       expect(parent.children).to include(child)
   end
 
-  it "should have a child" do
+  it "should have parent" do
       parent = Task.create
       child = Task.create
       parent.children << child
