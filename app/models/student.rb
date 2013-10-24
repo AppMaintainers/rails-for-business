@@ -11,6 +11,6 @@
 #
 
 class Student < ActiveRecord::Base
-  has_many :works
+  has_and_belongs_to_many :works
   has_many :tasks, through: :works
 end
