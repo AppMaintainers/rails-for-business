@@ -17,7 +17,7 @@ Student.delete_all
   Student.create(name: name, email: email, nickname: nickname)
 end
 
-
+Task.delete_all
 task_list = [
   [ "First", 540 ],
   [ "Second", 850 ],
@@ -25,8 +25,17 @@ task_list = [
   [ "Fourth", 80000 ]
 ]
 
+Work.delete_all
+
 task_list.each do |description, points|
-  Task.create( description: description, points: points )
+  work = Work.create
+  task = Task.create( description: description, points: points )
+  student = Student.first
+  student.works << work
+  student.save
+  work.task = task
+  work.save
 end
 
+Teacher.delete_all
 Teacher.create(email: "admin@admin.hu", password: "adminadmin")
