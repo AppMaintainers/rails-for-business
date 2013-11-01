@@ -1,34 +1,25 @@
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading"><h3>Students</h3></div>
+<h1>Students</h1>
 
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Nickname</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @students.each do |student| %>
-          <tr>
-            <td><%= link_to student.name, student %></td>
-            <td><%= student.nickname %></td>
-            <td><%= student.email %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <hr>
-    <% @tasks.each do |task| %>
-    <p>
-      Description: <%= task.description %><br>
-      <b>Points: <%= task.points %></b><br>
-      <b>Business: <%= task.business ? 'true' : 'false' %></b>
-    </p>
+<ul>
+    <% @students.each do |student| %>
+      <li class="student pull-left">
+        <%= link_to student.name + (student.nickname.blank? ? "" : "(" + student.nickname + ")"), student %>
+      </li>
     <% end %>
-  </div>
-</div>
+</ul>
+
+<div class="clearfix"></div>
+
+<h1>Tasks</h1>
+<ul>
+    <% @tasks.each do |task| %>
+        <li class="task pull-left">
+          <p class="<%= 'finished' unless task.available? %>">
+            <span class="<%= 'business' if task.business %>">
+               <%= content_tag(:b, "#{'★' * task.points}") %>
+            </span>
+            <%= task.description %><br>
+          </p>
+        </li>
+    <% end %>
+</ul>

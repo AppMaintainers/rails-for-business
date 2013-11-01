@@ -12,5 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.effect.all
 //= require turbolinks
+//= require twitter/bootstrap
+//= require jquery.slimscroll.min
+//= require jquery.fullPage.min
 //= require_tree .
+
+var ready;
+ready = function() {
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

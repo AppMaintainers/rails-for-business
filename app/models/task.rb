@@ -17,4 +17,12 @@ class Task < ActiveRecord::Base
   has_many :children, class_name: "Task", foreign_key: "parent_id"
 
   default_scope { order('tasks.created_at DESC') }
+
+  def available?
+    if self.business
+      students.empty?
+    else
+      true
+    end
+  end
 end

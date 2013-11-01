@@ -1,10 +1,100 @@
-@import "twitter/bootstrap.css.scss";
+@import "twitter/bootstrap";
 
-body {
- margin-top: 10px;
+body{
+  background: #a72139;
+  padding: 1em 0 1em 0;
+
+  .am-logo{
+    margin: -.5em;
+    height: 2em;
+    margin-right: .5em;
+  }
+
+  h1{
+    color: #ffffff;
+    text-shadow: 0px 1px 5px #691524;
+  }
+
+  .affix {
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 0;
+  }
+
+  .marketing-message{
+    img{
+      width: 100%;
+    }
+  }
+  .copyright{
+    margin: 1em;
+    color: #b4b4b4;
+    font-size: 1.6em;
+    text-shadow: 0px 1px 5px #691524;
+    text-align: center;
+
+    span{
+      display: block;
+      margin-top: 2em;
+      font-size: .6em;
+    }
+  }
+
+  &.page-students{
+
+    ul{
+      margin: 0;
+      padding: 0;
+    }
+
+    .student{
+      list-style: none;
+
+      a{
+        display: block;
+        margin: 0 1em 1em 0;
+        background: #ffffff;
+        box-shadow: 0px 1px 5px #691524;
+        border-radius: .2em;
+        text-align: center;
+        padding: 1.4em 2em;
+        font-size: 1.4em;
+      }
+    }
+    .task{
+      list-style: none;
+
+      p{
+        display: block;
+        margin: 0 1em 1em 0;
+        background: #ffffff;
+        box-shadow: 0px 1px 5px #691524;
+        border-radius: .2em;
+        padding: 1.4em 2em;
+        font-size: 1.4em;
+        min-height: 6em;
+        font-size: 2em;
+        span{
+          font-size: 1.4em;
+          color: #e7d805;
+          text-shadow: 0px 1px 3px #888888;
+          margin: 0 0 1em 0;
+          text-align: center;
+          display: block;
+
+          &.business{
+            color: #b77a07;
+          }
+        }
+
+        &.finished{
+          background: #c5cdbf;
+        }
+      }
+    }
+
+  }
+
 }
 
-.centered {
-  margin-left: auto;
-  margin-right: auto;
-}
