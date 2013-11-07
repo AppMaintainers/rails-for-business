@@ -9,11 +9,9 @@
 #  pool: 5
 #  timeout: 5000
 development:
-  adapter: postgresql
+  adapter: sqlite3
   database: rails_for_business_development
   host: localhost
-  username: juhat
-  password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

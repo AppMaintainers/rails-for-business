@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024152047) do
+ActiveRecord::Schema.define(version: 20131107154227) do
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -32,7 +45,10 @@ ActiveRecord::Schema.define(version: 20131024152047) do
     t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "students", ["slug"], name: "index_students_on_slug", unique: true
 
   create_table "students_works", id: false, force: true do |t|
     t.integer "work_id"
@@ -45,8 +61,8 @@ ActiveRecord::Schema.define(version: 20131024152047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "business",    default: false, null: false
-    t.integer  "parent_id"
     t.boolean  "one_time"
+    t.integer  "parent_id"
   end
 
   add_index "tasks", ["one_time"], name: "index_tasks_on_one_time"
