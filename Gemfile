@@ -11,6 +11,7 @@ gem 'jbuilder'
 gem 'annotate'
 gem 'rails_admin'
 gem 'devise'
+gem 'devise_invitable', '~> 1.3.1'
 
 group :development, :test do
   gem 'sqlite3'

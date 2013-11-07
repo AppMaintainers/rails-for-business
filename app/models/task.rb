@@ -7,7 +7,9 @@
 #  points      :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  business    :boolean
+#  business    :boolean          default(FALSE), not null
+#  one_time    :boolean
+#  parent_id   :integer
 #
 
 class Task < ActiveRecord::Base
