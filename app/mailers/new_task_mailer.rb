@@ -1,5 +1,5 @@
 class NewTaskMailer < ActionMailer::Base
-  default :from => "r4b@example.com"
+  default :from => "r4b@appmaintainers.com"
 
   def new_task(task)
     @task = task
