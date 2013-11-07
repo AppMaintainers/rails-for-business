@@ -3,7 +3,7 @@
 <ul>
     <% @students.each do |student| %>
       <li class="student pull-left">
-        <%= link_to student.name + (student.nickname.blank? ? "" : "(" + student.nickname + ")"), student %>
+        <%= link_to (student.nickname.blank? ? ((student.name).split(" ")[-1].blank? ? student.name : (student.name).split(" ")[-1]) : student.nickname), student %>
       </li>
     <% end %>
 </ul>
