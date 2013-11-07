@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20131024152047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "business",    default: false, null: false
-    t.integer  "parent_id"
     t.boolean  "one_time"
+    t.integer  "parent_id"
   end
 
   add_index "tasks", ["one_time"], name: "index_tasks_on_one_time"
