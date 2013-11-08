@@ -15,8 +15,10 @@ class Student < ActiveRecord::Base
   has_many :tasks, through: :works
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
-  
+  friendly_id :nickname, use: :slugged
+
+  validates :name, :nickname, :email, presence: true
+
   def available_tasks
     Task.all - self.tasks - Task.where(one_time: true).select{|task| task.students.any? }
   end
