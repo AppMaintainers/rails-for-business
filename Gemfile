@@ -11,6 +11,7 @@ gem 'jbuilder'
 gem 'annotate'
 gem 'rails_admin'
 gem 'devise'
+gem 'devise_invitable', '~> 1.3.1'
 gem 'friendly_id', '~> 5.0.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 
