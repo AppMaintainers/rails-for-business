@@ -1,7 +1,11 @@
 StudentAdmin::Application.routes.draw do
   devise_for :teachers
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  resources :students
+  resources :students do
+    collection do
+      get :stats
+    end
+  end
   root :to => "students#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
