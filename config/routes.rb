@@ -1,4 +1,5 @@
 StudentAdmin::Application.routes.draw do
+  devise_for :students
   devise_for :teachers
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   resources :students do
