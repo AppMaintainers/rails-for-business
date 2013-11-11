@@ -1,0 +1,8 @@
+<p>Hello <%= @resource.email %>!</p>
+
+<p>A Rails for Business tanárai meghívták az óra oldalára, amely itt található: <%= root_url %>. A linkre kattintva fogadhatja el a meghívást.</p>
+
+<p><%= link_to 'Elfogadom', accept_invitation_url(@resource, :invitation_token => @token) %></p>
+
+<p>Ha rossz helyre ment a levél, akkor tekintse tárgytalannak!<br />
+Az Ön hozzáférése csak a fenti linkre kattintva jön létre.</p>
