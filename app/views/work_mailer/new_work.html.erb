@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>A finished work was registered for you!</h1>
+    <p>
+      Description:<br/> <%= @work.task.description %>.<br/>
+      Points: <br/> <%= @work.task.points %><br>
+    </p>
+    <p>
+      The working group contains the following students:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @work.students.each do |student| %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.sum_points %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
