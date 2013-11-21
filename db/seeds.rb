@@ -14,7 +14,7 @@ Student.delete_all
   nickname = fnames[rand(6)]
   name = nickname + " " + lnames[rand(6)]
   email = (name + "@foobar.com").gsub(" ", "")
-  Student.create(name: name, email: email, nickname: nickname)
+  Student.create(name: name, email: email, nickname: nickname, password: "12345678")
 end
 
 Task.delete_all

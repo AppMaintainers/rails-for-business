@@ -8,6 +8,7 @@
 #  nickname               :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  slug                   :string(255)
 #  encrypted_password     :string(255)      default("")
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
@@ -31,7 +32,7 @@ require 'spec_helper'
 describe Student do
   
   before do
-    @student = Student.new(name: "Example Student", email: "student@foobar.com", nickname: "Student")
+    @student = Student.new(name: "Example Student", email: "student@foobar.com", nickname: "Student", password: "12345678")
   end
 
   subject {@student }

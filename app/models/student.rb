@@ -8,6 +8,7 @@
 #  nickname               :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  slug                   :string(255)
 #  encrypted_password     :string(255)      default("")
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
@@ -41,5 +42,9 @@ class Student < ActiveRecord::Base
 
   def available_tasks
     Task.all - self.tasks - Task.where(one_time: true).select{|task| task.students.any? }
+  end
+
+  def sum_points
+    self.tasks.inject(0){|sum, task| sum + task.points}
   end
 end
