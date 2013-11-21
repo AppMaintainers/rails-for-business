@@ -28,6 +28,12 @@
             <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
               <li><%= link_to 'Stats', stats_students_path %></li>
+              <% if student_signed_in? %>
+                <li><%= link_to 'Edit profile', edit_student_registration_path %> </li>
+                <li><%= link_to "Logout", destroy_student_session_path, method: :delete %>	</li>
+              <% else %>
+                <li><%= link_to "Login", new_student_session_path %>	</li>
+              <% end %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://AppMaintainers.com"><%= image_tag 'app-maintainers.png', class: 'am-logo' %>an App Maintainers project</a></li>
