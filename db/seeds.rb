@@ -14,22 +14,22 @@ Student.delete_all
   nickname = fnames[rand(6)]
   name = nickname + " " + lnames[rand(6)]
   email = (name + "@foobar.com").gsub(" ", "")
-  Student.create(name: name, email: email, nickname: nickname)
+  Student.create!(name: name, email: email, nickname: nickname, password:"budapesten")
 end
 
 Task.delete_all
 task_list = [
-  [ "First", 540 ],
-  [ "Second", 850 ],
-  [ "Third", 905 ],
-  [ "Fourth", 80000 ]
+  [ "First", 2 ,true],
+  [ "Second", 3, false],
+  [ "Third", 1, false],
+  [ "Fourth", 3, false]
 ]
 
 Work.delete_all
 
-task_list.each do |description, points|
+task_list.each do |description, points, business|
   work = Work.create
-  task = Task.create( description: description, points: points )
+  task = Task.create( description: description, points: points, business: business )
   student = Student.first
   student.works << work
   student.save
@@ -38,4 +38,4 @@ task_list.each do |description, points|
 end
 
 Teacher.delete_all
-Teacher.create(email: "admin@admin.hu", password: "adminadmin")
+Teacher.create!(email: "admin@admin.hu", password: "adminadmin")

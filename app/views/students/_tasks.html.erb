@@ -1,0 +1,12 @@
+<ul>
+  <% tasks.each do |task| %>
+      <li class="task pull-left">
+        <p class="<%= 'finished' unless task.available? %>">
+          <span class="<%= 'business' if task.business %>">
+             <%= content_tag(:b, "#{'★' * task.points}") %>
+          </span>
+          <%= task.description %><br>
+        </p>
+      </li>
+  <% end %>
+</ul>

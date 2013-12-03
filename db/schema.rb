@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131107204754) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -24,10 +21,10 @@ ActiveRecord::Schema.define(version: 20131107204754) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -35,12 +32,12 @@ ActiveRecord::Schema.define(version: 20131107204754) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 8
+    t.integer  "year",       limit: 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "students", force: true do |t|
     t.string   "name"
@@ -67,11 +64,11 @@ ActiveRecord::Schema.define(version: 20131107204754) do
     t.string   "invited_by_type"
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
-  add_index "students", ["invitation_token"], name: "index_students_on_invitation_token", unique: true, using: :btree
-  add_index "students", ["invited_by_id"], name: "index_students_on_invited_by_id", using: :btree
-  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
-  add_index "students", ["slug"], name: "index_students_on_slug", unique: true, using: :btree
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["invitation_token"], name: "index_students_on_invitation_token", unique: true
+  add_index "students", ["invited_by_id"], name: "index_students_on_invited_by_id"
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+  add_index "students", ["slug"], name: "index_students_on_slug", unique: true
 
   create_table "students_works", id: false, force: true do |t|
     t.integer "work_id"
@@ -84,11 +81,11 @@ ActiveRecord::Schema.define(version: 20131107204754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "business",    default: false, null: false
-    t.integer  "parent_id"
     t.boolean  "one_time"
+    t.integer  "parent_id"
   end
 
-  add_index "tasks", ["one_time"], name: "index_tasks_on_one_time", using: :btree
+  add_index "tasks", ["one_time"], name: "index_tasks_on_one_time"
 
   create_table "teachers", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -105,8 +102,8 @@ ActiveRecord::Schema.define(version: 20131107204754) do
     t.datetime "updated_at"
   end
 
-  add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true, using: :btree
-  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true, using: :btree
+  add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
+  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
 
   create_table "works", force: true do |t|
     t.integer  "task_id"
