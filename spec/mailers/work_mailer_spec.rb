@@ -3,33 +3,32 @@ require "spec_helper"
 describe WorkMailer do
   describe 'email' do
     before(:all) do
-      @student = Student.create(name: "Example Student", email: "student@foobar.com", nickname: "Student", password: "12345678")
-      @task = Task.create(description: "Task", points: 3)
-      work = Work.new
-      work.task = @task
-      work.students << @student
-      work.save
-      @mail = ActionMailer::Base.deliveries.last
-    end
-  
-    it "should render the subject" do
-      expect(@mail.subject).to eq "[Rails for Business] Work registered"
+      @student = FactoryGirl.create(:student)
+      @task = FactoryGirl.create(:task)
+      @work = FactoryGirl.create(:work)
+      @work.task = @task
+      @work.students << @student
+      @mail = WorkMailer.new_work(@work, @student)
     end
 
-    it "should render the correct receiver mail" do
-      expect(@mail.to).to eq [@student.email]
+    it "should have the correct subject" do
+      expect(@mail).to have_subject("[Rails for Business] Work registered")
     end
-    
+
+    it "should be set to be delivered to the email passed in" do
+      expect(@mail).to deliver_to(@student.email)
+    end
+
      it " should render the correct sender email" do
-      expect(@mail.from).to eq ["r4b@appmaintainers.com"]
+      expect(@mail).to deliver_from("r4b@appmaintainers.com")
     end
 
-    it "should render task information" do
-      expect(@mail.body.encoded).to have_content @task.description
-      expect(@mail.body.encoded).to have_content@task.points
+    it "should contain task information" do
+      expect(@mail).to have_body_text /#{@task.description}/
+      expect(@mail).to have_body_text /#{@task.points}/
     end
 
-    it "should render student information" do
+    it "should contain student information" do
       expect(@mail.body.encoded).to have_selector("th", text: "Name")
       expect(@mail.body.encoded).to have_selector("th", text: "Points")
       expect(@mail.body.encoded).to have_selector("td", text: @student.name)

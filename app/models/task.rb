@@ -21,9 +21,11 @@ class Task < ActiveRecord::Base
 
   default_scope { order('tasks.created_at DESC') }
 
+  scope :available, -> {all - joins(:works).where(one_time: true, works: {state: [:in_progress, :finished]})}
+
   def available?
-    if self.business
-      students.empty?
+    if self.one_time
+      works.select(state: [:in_progress, :finished]).empty?
     else
       true
     end

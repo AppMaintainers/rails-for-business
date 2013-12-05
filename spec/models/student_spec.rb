@@ -31,11 +31,9 @@ require 'spec_helper'
 
 describe Student do
   
-  before do
-    @student = Student.new(name: "Example Student", email: "student@foobar.com", nickname: "Student", password: "12345678")
-  end
+  let(:student) { FactoryGirl.create(:student) }
 
-  subject {@student }
+  subject { student }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
@@ -49,9 +47,9 @@ describe Student do
   it { should have_many(:tasks).through(:works) }
 
   it "should be saved to database" do
-    @student.save
-    loaded = Student.first
-    expect(loaded).to eq(@student)
+    student.save
+    loaded = Student.where(email: student.email).first
+    expect(loaded.email).to eq(student.email)
   end
 
 end

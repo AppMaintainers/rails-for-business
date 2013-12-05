@@ -6,6 +6,7 @@
 #  task_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  state      :string(255)
 #
 
 class Work < ActiveRecord::Base
@@ -13,6 +14,13 @@ class Work < ActiveRecord::Base
   belongs_to :task
 
   after_create :send_user_notification
+
+  state_machine :initial => :in_progress do
+
+    event :finish do
+      transition :in_progress => :finished
+    end
+  end
 
   def send_user_notification
     self.students.each do |student|
