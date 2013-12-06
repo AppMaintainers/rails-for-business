@@ -6,30 +6,28 @@
 #  task_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  state      :string(255)
 #
 
 require 'spec_helper'
 
 describe Work do
-  before do
-    @work = Work.new
-  end
+  let(:work) { FactoryGirl.create(:work) }
 
-  subject { @work }
+  subject { work }
 
   it { should respond_to(:task_id) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:task) }
   it { should respond_to(:students) }
-
   it { should belong_to(:task) }
   it { should have_and_belong_to_many(:students) }
 
   it "should connect a student and a task" do
-    student = Student.create(name: "Example Student", email: "student@foobar.com", nickname: "Student", password: "12345678")
-    task = Task.create
-    work = Work.create
+    student = FactoryGirl.create(:student)
+    task = FactoryGirl.create(:task)
+    work = FactoryGirl.create(:work)
     work.task = task
     work.save
     student.works << work
@@ -38,16 +36,37 @@ describe Work do
     expect(task.students).to include(student)
   end
 
-  it "should send emails" do
-    student1 = Student.create(name: "Example Student", email: "student1@foobar.com", nickname: "Student1", password: "12345678")
-    student2 = Student.create(name: "Example Student", email: "student2@foobar.com", nickname: "Student2", password: "12345678")
-    task = Task.create(description: "Task", points: 3)
+  it "should deliver the notification emails" do
+    
+    student1 = FactoryGirl.create(:student)
+    student2 = FactoryGirl.create(:student)
+    task = FactoryGirl.create(:task)
     work = Work.new
+    
+    mail = double
+    expect(mail).to receive(:deliver).twice
+    WorkMailer.should_receive(:new_work).with(work, student1).and_return(mail)
+    WorkMailer.should_receive(:new_work).with(work, student2).and_return(mail)
+
     work.task = task
     work.students << student1 << student2
     work.save
-    work.students.each_with_index do |student, index|
-      expect(ActionMailer::Base.deliveries[index].to).to eq [student.email]
+  end
+
+  describe "states" do
+    let(:work) { FactoryGirl.create(:work) }
+
+    it { should respond_to(:finish) }
+    it { should respond_to(:finished?) }
+    it { should respond_to(:in_progress?) }
+
+    it "should be in_progress initially" do
+      expect(work.in_progress?).to be true
+    end
+
+    it "should be finished after finish event" do
+      work.finish
+      expect(work.finished?).to be true
     end
   end
 end

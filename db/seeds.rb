@@ -29,7 +29,11 @@ Work.delete_all
 
 task_list.each do |description, points|
   work = Work.create
-  task = Task.create( description: description, points: points )
+  
+  business = rand(2)
+  one_time = business == 1 ? 1 : rand(2)
+
+  task = Task.create( description: description, points: points, business: business, one_time: one_time)
   student = Student.first
   student.works << work
   student.save

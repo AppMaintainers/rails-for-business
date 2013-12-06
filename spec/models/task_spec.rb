@@ -12,20 +12,18 @@
 #  parent_id   :integer
 #
 
-
 require 'spec_helper'
 
 describe Task do
   
-  before do
-    @task = Task.new(description: "Example", points: 3)
-  end
+  let(:task) {FactoryGirl.create(:task)}
 
-  subject { @task }
+  subject { task }
 
   it { should respond_to(:description) }
   it { should respond_to(:points) }
   it { should respond_to(:business) }
+  it { should respond_to(:one_time) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:students) }
@@ -39,14 +37,14 @@ describe Task do
   it { should belong_to(:parent) }
 
   it "should be saved to database" do
-    @task.save
+    task.save
     loaded = Task.first
-    expect(loaded).to eq(@task)
+    expect(loaded).to eq(task)
   end
 
   describe "in parent-child relationship" do
-    let(:parent) { Task.create }
-    let(:child) { Task.create }
+    let(:parent) { FactoryGirl.create(:task) }
+    let(:child) { FactoryGirl.create(:task) }
 
     it "should have a child" do
       child.parent = parent

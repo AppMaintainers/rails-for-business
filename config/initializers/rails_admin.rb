@@ -1,8 +1,45 @@
 # RailsAdmin config file. Generated on October 10, 2013 16:56
 # See github.com/sferik/rails_admin for more informations
 
+require Rails.root.join('lib', 'rails_admin_finish_work.rb')
+
+module RailsAdmin
+  module Config
+    module Actions
+      class FinishWork < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register(self)
+      end
+    end
+  end
+end
+
 RailsAdmin.config do |config|
 
+  config.model 'Work' do
+    edit do
+      configure :state do
+        hide
+      end
+    end
+  end
+
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions 
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+    finish_work		
+  end
 
   ################  Global configuration  ################
 
